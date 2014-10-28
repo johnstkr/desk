@@ -1,5 +1,5 @@
 class Filter
-  include Desk
+  include DeskAPI
 
   attr_accessor :name, :id
 
@@ -9,7 +9,7 @@ class Filter
   end
 
   def self.find(id)
-    response = Desk.request("filters/#{id}", :get, nil)
+    response = DeskAPI.request("filters/#{id}", :get, nil)
     Filter.new(response['name'], parse_id(response))
   end
 
@@ -19,7 +19,7 @@ class Filter
   end
 
   def self.list
-    filters_hash = Desk.request("filters", :get, nil)
+    filters_hash = DeskAPI.request("filters", :get, nil)
     *filters_hash = filters_hash['_embedded']['entries']
     filters = filters_hash.map { |filter|
       Filter.new(filter['name'], parse_id(filter))
@@ -29,7 +29,7 @@ class Filter
   end
 
   def cases
-    cases_hash = Desk.request("filters/#{@id}/cases", :get, nil)
+    cases_hash = DeskAPI.request("filters/#{@id}/cases", :get, nil)
     *cases_hash = cases_hash['_embedded']['entries']
     cases = cases_hash.map { |kase|
       kase = Case.new(kase['id'], kase['type'], kase['subject'], kase['status'], kase['description'])

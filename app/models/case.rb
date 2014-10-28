@@ -1,5 +1,5 @@
 class Case
-  include Desk
+  include DeskAPI
 
   attr_accessor :id, :status, :type, :subject, :description, :labels
 
@@ -12,12 +12,12 @@ class Case
   end
 
   def self.find(id)
-    case_hash = Desk.request("cases/#{id}", :get, nil);
+    case_hash = DeskAPI.request("cases/#{id}", :get, nil);
     Case.new(case_hash['id'], case_hash['type'], case_hash['subject'], case_hash['status'], case_hash['description'])
   end
 
   def self.list
-    cases_hash = Desk.request("cases", :get, nil)
+    cases_hash = DeskAPI.request("cases", :get, nil)
     cases_hash = cases_hash['_embedded']['entries']
 
     cases = cases_hash.map { |kase|
@@ -28,7 +28,7 @@ class Case
   end
 
   def labels
-    labels_hash = Desk.request("cases/#{@id}/labels", :get, nil)
+    labels_hash = DeskAPI.request("cases/#{@id}/labels", :get, nil)
     *labels_hash = labels_hash['_embedded']['entries']
     labels = labels_hash.map { |label|
       Label.new(label['id'], label['description'], label['name'], label['active'], label['color'])
@@ -44,7 +44,7 @@ class Case
     labels.map { |l|
       label_ids << l.name
     }
-    patch_hash = Desk.request("cases/#{@id}", :patch, {"labels" => label_ids});
+    patch_hash = DeskAPI.request("cases/#{@id}", :patch, {"labels" => label_ids});
     Case.new(patch_hash['id'], patch_hash['type'], patch_hash['subject'], patch_hash['status'], patch_hash['description'])
   end
 end

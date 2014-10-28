@@ -1,4 +1,4 @@
-module Desk
+module DeskAPI
 
   def self.authenticate
     #do oauth dance
