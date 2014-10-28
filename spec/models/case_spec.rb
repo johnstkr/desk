@@ -48,4 +48,19 @@ RSpec.describe Case, :type => :model do
       expect(@cases[0].class).to eq Case
     end
   end
+
+  context "labels" do
+    before do
+      @case = Case.find(CASE_ID)
+      @labels = @case.labels
+    end
+
+    it "returns an array" do
+      expect(@labels.class).to eq Array
+    end
+
+    it "returns an array of labels" do
+      expect(@labels[0].class).to eq Label
+    end
+  end
 end
