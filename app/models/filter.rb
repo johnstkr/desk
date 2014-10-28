@@ -1,8 +1,7 @@
 class Filter
   include Desk
-  attr_accessor :name, :id
 
-  @@path = "filters"
+  attr_accessor :name, :id
 
   def initialize(name, id)
     @name = name
@@ -10,7 +9,7 @@ class Filter
   end
 
   def self.find(id)
-    response = Desk.request("#{@@path}/#{id}", :get, nil)
+    response = Desk.request("filters/#{id}", :get, nil)
     Filter.new(response['name'], parse_id(response))
   end
 
