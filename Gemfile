@@ -43,7 +43,8 @@ gem 'oauth'
 
 
 group :development, :test do
-  gem 'shoulda'
+  gem 'shoulda-matchers', require: false
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'webmock'
 end
