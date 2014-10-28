@@ -34,4 +34,18 @@ RSpec.describe Case, :type => :model do
       expect(@case.description).to_not eq nil
     end
   end
+
+  context "list" do
+    before do
+      @cases = Case.list
+    end
+
+    it "returns an array" do
+      expect(@cases.class).to eq Array
+    end
+
+    it "returns an array of Cases" do
+      expect(@cases[0].class).to eq Case
+    end
+  end
 end
