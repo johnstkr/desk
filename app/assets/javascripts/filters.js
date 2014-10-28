@@ -13,26 +13,27 @@ $(document).ready(function () {
         $("div#errors").removeClass("hidden");
     });
 
-    $(document).on("ajax:success", ".label-form", function (e, data, status, xhr) {
-        var id = $(this).data("case");
-        update_current_label_list(data, id);
-        //since the form can be reused but the names cannot, clear out the fields
-        $(this).find("input.form-control").val("")
-        //and reset the pulldown too
-        $(this).find("select.form-control").prop('selectedIndex', 0);
-    }).on("ajax:error", function (e, xhr, status, error) {
-        $(".label-result").append("<p>ERROR</p>");
-    });
+});
+
+$(document).on("ajax:success", ".label-form", function (e, data, status, xhr) {
+    var id = $(this).data("case");
+    update_current_label_list(data, id);
+    //since the form can be reused but the names cannot, clear out the fields
+    $(this).find("input.form-control").val("")
+    //and reset the pulldown too
+    $(this).find("select.form-control").prop('selectedIndex', 0);
+}).on("ajax:error", function (e, xhr, status, error) {
+    $(".label-result").append("<p>ERROR</p>");
+});
 
 
-    $(document).on("ajax:success", ".label-add-form", function (e, data, status, xhr) {
-        var id = $(this).data("case");
-        update_current_label_list(data, id);
+$(document).on("ajax:success", ".label-add-form", function (e, data, status, xhr) {
+    var id = $(this).data("case");
+    update_current_label_list(data, id);
 
 
-    }).on("ajax:error", function (e, xhr, status, error) {
-        $(".label-result").append("<p>ERROR</p>");
-    });
+}).on("ajax:error", function (e, xhr, status, error) {
+    $(".label-result").append("<p>ERROR</p>");
 });
 
 $(document).on('click', 'a.indicator_trigger', function (event) {
