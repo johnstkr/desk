@@ -46,5 +46,8 @@ group :development, :test do
   gem 'shoulda-matchers', require: false
   gem 'rspec'
   gem 'rspec-rails'
+end
+
+group :test do
   gem 'webmock'
 end
