@@ -8,6 +8,21 @@ class Label
     @name = name
     @active = active
     @color = color
-    end
+  end
+
+  def self.find(id)
+     label_hash = Desk.request("labels/#{id}", :get, nil);
+     Label.new(label_hash['id'], label_hash['description'], label_hash['name'], label_hash['active'], label_hash['color'])
+  end
+
+  def self.list
+    labels_hash = Desk.request("/labels", :get, nil)
+    *labels_hash = labels_hash['_embedded']['entries']
+    labels = labels_hash.map { |label|
+      Label.new(label['id'], label['description'], label['name'], label['active'], label['color'])
+    }
+
+    labels
+  end
 
 end
