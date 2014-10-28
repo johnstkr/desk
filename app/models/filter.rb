@@ -29,4 +29,16 @@ class Filter
     filters
   end
 
+  def cases
+    cases_hash = Desk.request("filters/#{@id}/cases", :get, nil)
+    *cases_hash = cases_hash['_embedded']['entries']
+    cases = cases_hash.map { |kase|
+      kase = Case.new(kase['id'], kase['type'], kase['subject'], kase['status'], kase['description'])
+      kase.labels
+      kase
+    }
+
+    cases
+  end
+
 end
