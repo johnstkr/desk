@@ -1,0 +1,21 @@
+%h4
+  Cases
+  %small
+    for Filter: #{@filter.name}
+%table.table.cases
+  %tr
+    %th Subject
+    %th Labels
+    %th
+  -@cases.each do |kase|
+    %tr
+      %td
+        #{kase.subject}
+      %td{id: "case-row-#{kase.id}"}
+        -kase.labels.each do |label|
+          = render "labels/label", :label => label, :locals => { :show_details => true }
+      %td
+        = link_to "+ Add Label", case_path(kase.id), {class: "btn btn-primary btn-xs", data: { toggle: "modal", target: "#case-modal" }}
+
+
+
