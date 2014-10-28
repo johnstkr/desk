@@ -1,0 +1,15 @@
+.row
+  .col-md-3
+    %h4
+      Filters
+      %small Chose a filter to get cases
+    .list-group
+      -@filters.each do |filter|
+        =link_to filter_path(filter.id), {remote: true, class: 'filter indicator_trigger list-group-item', anchor: '#'}  do
+          %span
+            #{filter.name}
+          %span.indicator.fa.fa-circle-o-notch.fa-spin.hidden.pull-right.text-primary
+
+  .col-md-9
+    #filter_details
+
