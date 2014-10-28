@@ -1,0 +1,38 @@
+.modal-header
+  %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+  %h5.modal-title
+    #{@case.subject}
+  .modal-body
+    .row
+      .col-md-6
+        %p.text-muted Add A New Label
+
+        =form_tag labels_path, {:remote => true, :class => "label-form", :data => { :case => @case.id}} do
+          =hidden_field_tag :case, @case.id
+        .row
+          = label_tag :name
+          = text_field_tag :name, '', {:class => "form-control", :placeholder => "What's my name?"}
+        .row
+          = label_tag :description
+          = text_field_tag :description, '', {:class => "form-control", :placeholder => "What's it all about?"}
+        .row
+          = label_tag :color
+          %select{ :name => "color", :class => "form-control" }
+            - ['default','blue','white','yellow','red','orange','green','black','purple','brown','grey','pink'].each do |i|
+              %option{:value => i}= i
+        .row
+          %br
+          = submit_tag "Create Label", :class => "btn btn-default center-block"
+      .col-md-5.col-md-offset-1
+        %p.text-muted Add An Existing Label
+        .row.available
+          %p Available Labels
+          -@labels.each do |label|
+            = render "labels/add", :label => label, :locals => { :show_details => true }
+
+  .modal-footer.current
+    .row.text-left
+      %p Current Labels
+      .col-md-12.well
+        -@current_labels.each do |label|
+          = render "labels/label", :label => label, :locals => { :show_details => true }
