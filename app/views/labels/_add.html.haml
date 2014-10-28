@@ -1,0 +1,4 @@
+%span
+  =form_tag case_path(@case.id), {:remote => true, :class => "label-add-form", :method => "put", :data => { :case => @case.id}} do
+    =hidden_field_tag :label, label.id
+    =submit_tag "+ #{label.name}", :class => "btn btn-xs color-#{label.color}"
