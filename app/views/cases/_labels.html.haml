@@ -30,9 +30,9 @@
           -@labels.each do |label|
             = render "labels/add", :label => label, :locals => { :show_details => true }
 
-  .modal-footer.current
+  .modal-footer.
     .row.text-left
       %p Current Labels
-      .col-md-12.well
+      .col-md-12.well.current
         -@current_labels.each do |label|
           = render "labels/label", :label => label, :locals => { :show_details => true }
