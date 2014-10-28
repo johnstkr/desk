@@ -18,4 +18,15 @@ class Filter
     #since id doesn't seem to be provided,lets get it off the end of the self link
     id = link['_links']['self']['href'].to_s.split("/").last
   end
+
+  def self.list
+    filters_hash = Desk.request("filters", :get, nil)
+    *filters_hash = filters_hash['_embedded']['entries']
+    filters = filters_hash.map { |filter|
+      Filter.new(filter['name'], parse_id(filter))
+    }
+
+    filters
+  end
+
 end

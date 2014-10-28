@@ -22,4 +22,19 @@ RSpec.describe Filter, :type => :model do
       expect(@filter.id).to eq FILTER_ID
     end
   end
+
+  context "list" do
+    before do
+      @filters = Filter.list
+    end
+
+    it "returns an array" do
+      expect(@filters.class).to eq Array
+    end
+
+    it "returns an array of Filters" do
+      expect(@filters[0].class).to eq Filter
+    end
+
+  end
 end
