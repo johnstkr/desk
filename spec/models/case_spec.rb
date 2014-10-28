@@ -3,4 +3,35 @@ require 'desk'
 
 RSpec.describe Case, :type => :model do
 
+  CASE_ID = 4 #this is the test case
+
+  context "find" do
+    before do
+      @case = Case.find(CASE_ID)
+    end
+
+    it "returns a case" do
+      expect(@case.class).to eq Case
+    end
+
+    it "has a subject" do
+      expect(@case.subject.class).to_not eq nil
+    end
+
+    it "has a type" do
+      expect(["chat", "twitter", "email", "qna", "facebook", "phone"]).to include "email"
+    end
+
+    it "has an id" do
+      expect(@case.id).to eq CASE_ID
+    end
+
+    it "has a status" do
+      expect(["new", "open", "pending", "resolved", "closed"]).to include @case.status
+    end
+
+    it "has a description" do
+      expect(@case.description).to_not eq nil
+    end
+  end
 end
