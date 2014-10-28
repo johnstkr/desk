@@ -19,7 +19,7 @@ RSpec.describe Case, :type => :model do
     end
 
     it "has a type" do
-      expect(["chat", "twitter", "email", "qna", "facebook", "phone"]).to include "email"
+      expect(["chat", "twitter", "email", "qna", "facebook", "phone"]).to include @case.type
     end
 
     it "has an id" do
