@@ -25,4 +25,10 @@ class Label
     labels
   end
 
+  def self.create(name, description, types, color)
+    label = Desk.request("labels", :post, {name: name, description: description, types: types, color: color})
+    Label.new(label['id'], label['description'], label['name'], label['active'], label['color'])
+  end
+
+
 end

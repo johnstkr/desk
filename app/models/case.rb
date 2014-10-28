@@ -28,12 +28,23 @@ class Case
   end
 
   def labels
-      labels_hash = Desk.request("cases/#{@id}/labels", :get, nil)
-      *labels_hash = labels_hash['_embedded']['entries']
-      labels = labels_hash.map { |label|
-        Label.new(label['id'], label['description'], label['name'], label['active'], label['color'])
-      }
+    labels_hash = Desk.request("cases/#{@id}/labels", :get, nil)
+    *labels_hash = labels_hash['_embedded']['entries']
+    labels = labels_hash.map { |label|
+      Label.new(label['id'], label['description'], label['name'], label['active'], label['color'])
+    }
 
-      labels
-    end
+    labels
+  end
+
+  def add_label(label)
+    *labels = self.labels
+    labels << label
+    label_ids = []
+    labels.map { |l|
+      label_ids << l.name
+    }
+    patch_hash = Desk.request("cases/#{@id}", :patch, {"labels" => label_ids});
+    Case.new(patch_hash['id'], patch_hash['type'], patch_hash['subject'], patch_hash['status'], patch_hash['description'])
+  end
 end
