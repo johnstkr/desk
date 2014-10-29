@@ -11,7 +11,7 @@ class Label
   end
 
   def self.find(id)
-    label_hash = DeskAPI.request("labels/#{id}", :get, nil);
+    label_hash = DeskAPI.request("labels/#{id}", :get, nil)
     Label.new(label_hash['id'], label_hash['description'], label_hash['name'], label_hash['active'], label_hash['color'])
   end
 

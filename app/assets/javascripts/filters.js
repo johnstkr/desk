@@ -19,7 +19,7 @@ $(document).on("ajax:success", ".label-form", function (e, data, status, xhr) {
     var id = $(this).data("case");
     update_current_label_list(data, id);
     //since the form can be reused but the names cannot, clear out the fields
-    $(this).find("input.form-control").val("")
+    $(this).find("input.form-control").val("");
     //and reset the pulldown too
     $(this).find("select.form-control").prop('selectedIndex', 0);
 }).on("ajax:error", function (e, xhr, status, error) {

@@ -12,7 +12,7 @@ class Case
   end
 
   def self.find(id)
-    case_hash = DeskAPI.request("cases/#{id}", :get, nil);
+    case_hash = DeskAPI.request("cases/#{id}", :get, nil)
     Case.new(case_hash['id'], case_hash['type'], case_hash['subject'], case_hash['status'], case_hash['description'])
   end
 
@@ -41,7 +41,7 @@ class Case
     *labels = self.get_labels
     labels << label
     label_ids = labels.map &:name
-    patch_hash = DeskAPI.request("cases/#{@id}", :patch, {"labels" => label_ids});
+    patch_hash = DeskAPI.request("cases/#{@id}", :patch, {"labels" => label_ids})
     Case.new(patch_hash['id'], patch_hash['type'], patch_hash['subject'], patch_hash['status'], patch_hash['description'])
   end
 end

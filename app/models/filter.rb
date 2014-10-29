@@ -15,7 +15,7 @@ class Filter
 
   def self.parse_id(link)
     #since id doesn't seem to be provided,lets get it off the end of the self link
-    id = link['_links']['self']['href'].to_s.split("/").last
+    link['_links']['self']['href'].to_s.split("/").last
   end
 
   def self.list

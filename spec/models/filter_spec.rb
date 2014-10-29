@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'desk'
 
 RSpec.describe Filter, :type => :model do
 

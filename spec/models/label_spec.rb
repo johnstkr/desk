@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'desk'
 
 RSpec.describe Label, :type => :model do
   LABEL_ID = 2025755 #this is the test label
