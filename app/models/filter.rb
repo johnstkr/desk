@@ -33,7 +33,7 @@ class Filter
     *cases_hash = cases_hash['_embedded']['entries']
     cases = cases_hash.map { |kase|
       kase = Case.new(kase['id'], kase['type'], kase['subject'], kase['status'], kase['description'])
-      kase.labels
+      kase.get_labels
       kase
     }
 

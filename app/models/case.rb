@@ -27,23 +27,20 @@ class Case
     cases
   end
 
-  def labels
+  def get_labels
     labels_hash = DeskAPI.request("cases/#{@id}/labels", :get, nil)
     *labels_hash = labels_hash['_embedded']['entries']
-    labels = labels_hash.map { |label|
+    label_array = labels_hash.map { |label|
       Label.new(label['id'], label['description'], label['name'], label['active'], label['color'])
     }
 
-    labels
+    @labels = label_array
   end
 
   def add_label(label)
-    *labels = self.labels
+    *labels = self.get_labels
     labels << label
-    label_ids = []
-    labels.map { |l|
-      label_ids << l.name
-    }
+    label_ids = labels.map &:name
     patch_hash = DeskAPI.request("cases/#{@id}", :patch, {"labels" => label_ids});
     Case.new(patch_hash['id'], patch_hash['type'], patch_hash['subject'], patch_hash['status'], patch_hash['description'])
   end

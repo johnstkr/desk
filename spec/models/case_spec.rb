@@ -5,7 +5,7 @@ RSpec.describe Case, :type => :model do
 
   CASE_ID = 4 #this is the test case
 
-  context "find" do
+  describe "find" do
     before do
       @case = Case.find(CASE_ID)
     end
@@ -35,7 +35,7 @@ RSpec.describe Case, :type => :model do
     end
   end
 
-  context "list" do
+  describe "list" do
     before do
       @cases = Case.list
     end
@@ -49,10 +49,10 @@ RSpec.describe Case, :type => :model do
     end
   end
 
-  context "labels" do
+  describe "labels" do
     before do
       @case = Case.find(CASE_ID)
-      @labels = @case.labels
+      @labels = @case.get_labels
     end
 
     it "returns an array" do

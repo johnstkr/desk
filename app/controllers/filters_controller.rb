@@ -4,7 +4,7 @@ class FiltersController < ApplicationController
   end
 
   def show
-    @filter = Filter.find(params["id"])
+    @filter = Filter.find(params[:id])
     @cases = @filter.cases
 
     render :partial => "filters/cases"

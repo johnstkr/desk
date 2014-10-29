@@ -5,7 +5,7 @@ RSpec.describe Filter, :type => :model do
 
   FILTER_ID = "2172115" #this is the test filter
 
-  context "find" do
+  describe "find" do
     before do
       @filter = Filter.find(FILTER_ID)
     end
@@ -23,7 +23,7 @@ RSpec.describe Filter, :type => :model do
     end
   end
 
-  context "list" do
+  describe "list" do
     before do
       @filters = Filter.list
     end
@@ -38,7 +38,7 @@ RSpec.describe Filter, :type => :model do
 
   end
 
-  context "cases" do
+  describe "cases" do
     before do
       @filter = Filter.find(FILTER_ID)
       @cases = @filter.cases
