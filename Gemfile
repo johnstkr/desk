@@ -43,12 +43,8 @@ gem 'oauth'
 
 gem 'rails_12factor'
 
-group :development, :test do
-  gem 'shoulda-matchers', require: false
+group :test do
   gem 'rspec'
   gem 'rspec-rails'
-end
-
-group :test do
   gem 'webmock'
 end
