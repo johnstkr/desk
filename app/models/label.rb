@@ -11,8 +11,8 @@ class Label
   end
 
   def self.find(id)
-     label_hash = DeskAPI.request("labels/#{id}", :get, nil);
-     Label.new(label_hash['id'], label_hash['description'], label_hash['name'], label_hash['active'], label_hash['color'])
+    label_hash = DeskAPI.request("labels/#{id}", :get, nil);
+    Label.new(label_hash['id'], label_hash['description'], label_hash['name'], label_hash['active'], label_hash['color'])
   end
 
   def self.list
@@ -25,8 +25,8 @@ class Label
     labels
   end
 
-  def self.create(name, description, types, color)
-    label = DeskAPI.request("labels", :post, {name: name, description: description, types: types, color: color})
+  def self.create(params)
+    label = DeskAPI.request("labels", :post, {name: params[:name], description: params[:description], types: ["case", "macro"], color: params[:color]})
     Label.new(label['id'], label['description'], label['name'], label['active'], label['color'])
   end
 

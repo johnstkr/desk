@@ -4,7 +4,7 @@ require 'desk'
 RSpec.describe Label, :type => :model do
   LABEL_ID = 2025755 #this is the test label
 
-  context "find" do
+  describe "find" do
     before do
       @label = Label.find(LABEL_ID)
     end
@@ -26,7 +26,7 @@ RSpec.describe Label, :type => :model do
     end
   end
 
-  context "list" do
+  describe "list" do
     before do
       @labels = Label.list
     end
