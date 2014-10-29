@@ -41,6 +41,7 @@ gem 'json'
 
 gem 'oauth'
 
+gem 'rails_12factor'
 
 group :development, :test do
   gem 'shoulda-matchers', require: false
